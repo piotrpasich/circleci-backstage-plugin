@@ -29,6 +29,7 @@ import {
   Progress,
   Link,
 } from '@backstage/core-components';
+import { configApiRef, useApi } from '@backstage/core-plugin-api';
 
 const BuildName = ({ build }: { build?: BuildWithSteps }) => (
   <Box display="flex" alignItems="center">
@@ -103,6 +104,8 @@ const ActionsList = ({
   name: string;
 }) => {
   const classes = useStyles();
+  const config = useApi(configApiRef);
+  const proxyPath = config.getString('backend.baseUrl') + '/api/proxy/circleci';
   return (
     <>
       {actions.map((action: BuildStepAction) => (
@@ -110,7 +113,7 @@ const ActionsList = ({
           className={action.failed ? classes.failed : classes.success}
           action={action}
           name={action.name}
-          url={action.output_url || ''}
+          url={(action.output_url || "").replace('https://circleci.com/api',proxyPath)}
         />
       ))}
     </>
