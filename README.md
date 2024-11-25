@@ -17,5 +17,5 @@ To install this forked version of the plugin, specify the package with the scope
 
 ```json
 "dependencies": {
-  "@piotr.pasich/circleci-backstage-plugin": "1.1.4"
+  "@piotr.pasich/circleci-backstage-plugin": "^1.1.4"
 }

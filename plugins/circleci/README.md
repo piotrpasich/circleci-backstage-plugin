@@ -14,7 +14,7 @@ Website: [https://circleci.com/](https://circleci.com/)
 
 ```bash
 # From your Backstage root directory
-yarn add --cwd packages/app @circleci/backstage-plugin
+yarn add --cwd packages/app @piotr.pasich/circleci-backstage-plugin
 ```
 
 2. Add the `EntityCircleCIContent` extension to the entity page in your app:
@@ -90,3 +90,9 @@ spec:
 
 - New release under CircleCI
 - Please watch out for new updates in the coming weeks
+
+
+### v0.1.4
+
+- Revert changes that removed build preview functionality
+- Fix issue with calling CircleCI API protected by CORS by adding a proxy and replacing calls to CircleCI API with calls to the proxy
