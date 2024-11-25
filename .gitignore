@@ -70,6 +70,9 @@ typings/
 !**/.yarn/sdks
 !**/.yarn/versions
 
+# Node version directives
+.nvmrc
+
 # Optional eslint cache
 .eslintcache
 
