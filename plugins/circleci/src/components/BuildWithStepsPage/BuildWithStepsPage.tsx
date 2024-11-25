@@ -113,7 +113,7 @@ const ActionsList = ({
           className={action.failed ? classes.failed : classes.success}
           action={action}
           name={action.name}
-          url: (action.output_url || "").replace('https://circleci.com/api',proxyPath)
+          url={(action.output_url || "").replace('https://circleci.com/api',proxyPath)}
         />
       ))}
     </>
