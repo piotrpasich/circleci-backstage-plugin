@@ -91,6 +91,10 @@ export class CircleCIApi {
     });
   }
 
+  async getUrl(url: string): Promise<unknown> {
+    return fetch(url).then(res => res.json());
+  }
+
   private async getApiUrl() {
     const proxyUrl = await this.discoveryApi.getBaseUrl('proxy');
     return proxyUrl + this.proxyPath;

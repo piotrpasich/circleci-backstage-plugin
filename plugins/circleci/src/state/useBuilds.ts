@@ -22,7 +22,7 @@ import useAsyncRetry from 'react-use/lib/useAsyncRetry';
 import { circleCIApiRef } from '../api';
 import type { CITableBuildInfo } from '../components/BuildsPage/lib/CITable';
 import { CIRCLECI_ANNOTATION } from '../constants';
-import { errorApiRef, useApi } from '@backstage/core-plugin-api';
+import { ErrorApiError, errorApiRef, useApi } from '@backstage/core-plugin-api'
 
 const makeReadableStatus = (status: string | undefined) => {
   if (!status) return '';
@@ -149,7 +149,7 @@ export function useBuilds() {
           },
         );
       } catch (e) {
-        errorApi.post(e);
+        errorApi.post(e as ErrorApiError);
         return Promise.reject(e);
       }
     },
@@ -166,7 +166,7 @@ export function useBuilds() {
         },
       });
     } catch (e) {
-      errorApi.post(e);
+      errorApi.post(e as ErrorApiError);
     }
   };
 

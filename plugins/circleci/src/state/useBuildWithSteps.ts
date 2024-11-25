@@ -18,7 +18,7 @@ import useAsyncRetry from 'react-use/lib/useAsyncRetry';
 import { circleCIApiRef } from '../api';
 import { useAsyncPolling } from './useAsyncPolling';
 import { useProjectSlugFromEntity, mapVcsType } from './useBuilds';
-import { errorApiRef, useApi } from '@backstage/core-plugin-api';
+import { ErrorApiError, errorApiRef, useApi } from '@backstage/core-plugin-api'
 
 const INTERVAL_AMOUNT = 1500;
 export function useBuildWithSteps(buildId: number) {
@@ -47,7 +47,7 @@ export function useBuildWithSteps(buildId: number) {
       const build = await api.getBuild(buildId, options);
       return Promise.resolve(build);
     } catch (e) {
-      errorApi.post(e);
+      errorApi.post(e as ErrorApiError);
       return Promise.reject(e);
     }
   }, [vcsOption, buildId, api, errorApi]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -58,7 +58,7 @@ export function useBuildWithSteps(buildId: number) {
         vcs: vcsOption,
       });
     } catch (e) {
-      errorApi.post(e);
+      errorApi.post(e as ErrorApiError);
     }
   };
 
